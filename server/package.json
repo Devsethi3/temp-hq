@@ -1,0 +1,16 @@
+{
+  "name": "logo-inspo",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "dev:backend": "bun run server/index.ts",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "elysia": "^1.4.28",
+    "pg": "^8.20.0"
+  }
+}

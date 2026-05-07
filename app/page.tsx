@@ -1,19 +1,36 @@
-import { Button } from "@/components/ui/button"
+"use client"
 
-export default function Page() {
+import { useState } from "react"
+import { Header } from "@/components/header"
+import HeroSection from "@/components/hero-section"
+import { LogoGallery } from "@/components/logo-gallery"
+import LogoSection, { type Logo } from "@/components/logo-section"
+import { Footer } from "@/components/footer"
+import { FullWidthDivider } from "@/components/ui/full-width-divider"
+
+export default function HomePage() {
+  const [filters, setFilters] = useState({
+    category: "all",
+    sort: "latest",
+    theme: "all",
+    search: "",
+  })
+
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
+    <div className="mx-auto min-h-screen max-w-7xl border-x px-4">
+      <Header />
+      <HeroSection />
+      <main className="py-12">
+        <LogoSection onFilterChange={setFilters} />
+        <LogoGallery
+          category={filters.category}
+          theme={filters.theme}
+          searchQuery={filters.search}
+          sortBy={filters.sort}
+        />
+      </main>
+      <hr className="w-full" />
+      <Footer />
     </div>
   )
 }

@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { EyeIcon } from "lucide-react"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ViewIcon } from "@hugeicons/core-free-icons"
 
@@ -14,35 +13,21 @@ export function ViewCounter({ slug }: ViewCounterProps) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function trackView() {
-      try {
-        const res = await fetch("/api/views", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ slug }),
-        })
-        const data = await res.json()
-        setViews(data.views)
-      } catch (error) {
-        console.error("Failed to track view:", error)
-      } finally {
-        setLoading(false)
-      }
+    const sessionKey = `viewed_${slug}`
+    const storageKey = `views_${slug}`
+
+    if (!sessionStorage.getItem(sessionKey)) {
+      const currentViews = Number(localStorage.getItem(storageKey)) || 0
+      const newViews = currentViews + 1
+      localStorage.setItem(storageKey, String(newViews))
+      setViews(newViews)
+      sessionStorage.setItem(sessionKey, "true")
+    } else {
+      const currentViews = Number(localStorage.getItem(storageKey)) || 0
+      setViews(currentViews)
     }
 
-    const viewedKey = `viewed_${slug}`
-    if (!localStorage.getItem(viewedKey)) {
-      trackView()
-      localStorage.setItem(viewedKey, "true")
-    } else {
-      fetch(`/api/views`)
-        .then((res) => res.json())
-        .then((data) => {
-          setViews(data[slug] || 0)
-        })
-        .catch(() => {})
-        .finally(() => setLoading(false))
-    }
+    setLoading(false)
   }, [slug])
 
   if (loading || views === null) {
@@ -60,29 +45,4 @@ export function ViewCounter({ slug }: ViewCounterProps) {
       <span>{views.toLocaleString()}</span>
     </span>
   )
-}
-
-export function useViewCount(slug: string) {
-  const [views, setViews] = useState<number | null>(null)
-
-  useEffect(() => {
-    const viewedKey = `viewed_${slug}`
-    if (!localStorage.getItem(viewedKey)) {
-      fetch("/api/views", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug }),
-      })
-        .then((res) => res.json())
-        .then((data) => setViews(data.views))
-        .catch(() => {})
-    } else {
-      fetch(`/api/views`)
-        .then((res) => res.json())
-        .then((data) => setViews(data[slug] || 0))
-        .catch(() => {})
-    }
-  }, [slug])
-
-  return views
 }

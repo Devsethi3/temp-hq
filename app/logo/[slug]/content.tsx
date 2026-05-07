@@ -168,10 +168,10 @@ function LogoDetailSkeleton() {
     <main className="py-6">
       <Skeleton className="h-8 w-16" />
       <div className="mt-4 flex flex-wrap gap-8 lg:mt-2">
-        <div className="flex w-full flex-col items-center justify-between sm:flex-row">
+        <div className="flex w-full flex-col lg:items-center items-start justify-between sm:flex-row">
           <div className="flex flex-col gap-2">
             <Skeleton className="mt-2 h-9 w-48" />
-            <Skeleton className="h-4 w-full max-w-md" />
+            {/* <Skeleton className="h-4 w-full max-w-md" /> */}
             <Skeleton className="h-4 w-32" />
             <div className="mt-1 flex items-center gap-2">
               <Skeleton className="h-6 w-16 rounded-full" />
@@ -179,9 +179,9 @@ function LogoDetailSkeleton() {
             </div>
           </div>
           <div className="mt-4 flex w-full flex-col gap-1 sm:mt-0 sm:flex-row lg:w-fit">
-            <Skeleton className="h-10 w-28 rounded-md" />
-            <Skeleton className="h-10 w-28 rounded-md" />
-            <Skeleton className="h-10 w-28 rounded-md" />
+            <Skeleton className="h-10 lg:w-28 w-full rounded-md" />
+            <Skeleton className="h-10 lg:w-28 w-full rounded-md" />
+            <Skeleton className="h-10 lg:w-28 w-full rounded-md" />
           </div>
         </div>
         <div className="relative aspect-video w-screen overflow-hidden">

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import NoiseBackground from "./ui/noise-background"
@@ -23,9 +23,14 @@ interface Logo {
 
 const HeroSection = () => {
   const [logos, setLogos] = useState<Logo[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
+  const fetched = useRef(false)
 
   useEffect(() => {
+    if (fetched.current) return
+    fetched.current = true
+
+    setLoading(true)
     const cached = localStorage.getItem("hero_logos")
     if (cached) {
       setLogos(JSON.parse(cached))

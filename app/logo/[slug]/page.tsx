@@ -17,6 +17,7 @@ interface Logo {
   category: string
   logo_url: string
   theme: string
+  mockups?: string[]
 }
 
 export async function generateStaticParams() {
@@ -42,12 +43,12 @@ export default async function LogoDetailPage({
   }
 
   return (
-    <div className="mx-auto min-h-screen max-w-7xl border-x px-4">
+    <div className="mx-auto min-h-screen lg:overflow-visible overflow-hidden max-w-7xl border-x px-4">
       <Header />
       <LogoDetailContent logo={logo} />
       <FullWidthDivider />
       <SimilarLogos currentSlug={slug} />
-      <hr />
+          <FullWidthDivider />
       <Footer />
     </div>
   )

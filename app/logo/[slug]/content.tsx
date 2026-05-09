@@ -20,6 +20,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { ViewCounter } from "@/components/view-counter"
 import { useBookmarks } from "@/hooks/useBookmarks"
 import type { Logo } from "./types"
+import { FullWidthDivider } from "@/components/ui/full-width-divider"
 
 function DownloadButton({
   logoUrl,
@@ -33,43 +34,39 @@ function DownloadButton({
   const handleDownload = async () => {
     setLoading(true)
     try {
-      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(logoUrl)}`
-      const response = await fetch(proxyUrl)
+      const downloadUrl = `/api/download?url=${encodeURIComponent(logoUrl)}&name=${encodeURIComponent(logoName)}`
+      const response = await fetch(downloadUrl)
       if (!response.ok) throw new Error("Failed to fetch")
+
       const blob = await response.blob()
       const url = URL.createObjectURL(blob)
+      const filename = `${logoName.toLowerCase().replace(/\s+/g, "-")}.png`
+
       const link = document.createElement("a")
       link.href = url
-      link.download = `${logoName.toLowerCase().replace(/\s+/g, "-")}.png`
+      link.download = filename
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
       URL.revokeObjectURL(url)
     } catch (error) {
       console.error("Download failed:", error)
-      const link = document.createElement("a")
-      link.href = logoUrl
-      link.download = `${logoName.toLowerCase().replace(/\s+/g, "-")}.png`
-      link.target = "_blank"
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
+      window.open(logoUrl, "_blank")
     }
     setLoading(false)
   }
 
   return (
-    <TextureButton asChild>
-      <button
-        onClick={handleDownload}
-        disabled={loading}
-        className={cn(
-          "flex items-center gap-2 whitespace-nowrap disabled:opacity-50"
-        )}
-      >
-        <HugeiconsIcon icon={DownloadSquare01Icon} className="size-4" />
-        {loading ? "Downloading..." : "Download"}
-      </button>
+    <TextureButton
+      asChild
+      onClick={handleDownload}
+      disabled={loading}
+      className={cn(
+        "flex cursor-pointer items-center gap-2 whitespace-nowrap disabled:opacity-50"
+      )}
+    >
+      <HugeiconsIcon icon={DownloadSquare01Icon} className="size-4" />
+      {loading ? "Downloading..." : "Download"}
     </TextureButton>
   )
 }
@@ -105,20 +102,15 @@ function CopyButton({ logoUrl }: { logoUrl: string }) {
   return (
     <TextureButton
       variant={copied ? "accent" : "minimal"}
-      className="whitespace-nowrap"
-      asChild
+      onClick={handleCopy}
+      disabled={loading}
+      className="flex items-center gap-2 whitespace-nowrap disabled:opacity-50"
     >
-      <button
-        onClick={handleCopy}
-        disabled={loading}
-        className="flex items-center gap-2"
-      >
-        <HugeiconsIcon
-          icon={copied ? CheckmarkCircleIcon : Copy01Icon}
-          className="size-4"
-        />
-        {copied ? "Copied!" : loading ? "Copying..." : "Copy Image"}
-      </button>
+      <HugeiconsIcon
+        icon={copied ? CheckmarkCircleIcon : Copy01Icon}
+        className="mr-2 size-4"
+      />
+      {copied ? "Copied!" : loading ? "Copying..." : "Copy Image"}
     </TextureButton>
   )
 }
@@ -168,7 +160,7 @@ function LogoDetailSkeleton() {
     <main className="py-6">
       <Skeleton className="h-8 w-16" />
       <div className="mt-4 flex flex-wrap gap-8 lg:mt-2">
-        <div className="flex w-full flex-col lg:items-center items-start justify-between sm:flex-row">
+        <div className="flex w-full flex-col items-start justify-between sm:flex-row lg:items-center">
           <div className="flex flex-col gap-2">
             <Skeleton className="mt-2 h-9 w-48" />
             {/* <Skeleton className="h-4 w-full max-w-md" /> */}
@@ -179,9 +171,9 @@ function LogoDetailSkeleton() {
             </div>
           </div>
           <div className="mt-4 flex w-full flex-col gap-1 sm:mt-0 sm:flex-row lg:w-fit">
-            <Skeleton className="h-10 lg:w-28 w-full rounded-md" />
-            <Skeleton className="h-10 lg:w-28 w-full rounded-md" />
-            <Skeleton className="h-10 lg:w-28 w-full rounded-md" />
+            <Skeleton className="h-10 w-full rounded-md lg:w-28" />
+            <Skeleton className="h-10 w-full rounded-md lg:w-28" />
+            <Skeleton className="h-10 w-full rounded-md lg:w-28" />
           </div>
         </div>
         <div className="relative aspect-video w-screen overflow-hidden">
@@ -220,55 +212,49 @@ export default function LogoDetailContent({ logo }: { logo: Logo }) {
         </Button>
         <BookmarkButton logo={logo} />
       </div>
-      <div className="flex flex-wrap gap-8 lg:mt-2">
+      <div className="flex flex-wrap lg:mt-2">
         <div className="flex w-full flex-col items-center justify-between sm:flex-row">
           <div className="flex flex-col gap-2">
-            <div>
-              <div className="flex items-center justify-between">
-                <h1 className="mt-2 font-heading text-3xl font-light">
-                  {logo.name}
-                </h1>
-              </div>
-              <p className="mt-2 text-sm text-muted-foreground">
-                by {logo.designer}
-              </p>
-            </div>
-
+            <h1 className="mt-2 font-heading text-3xl font-light">
+              {logo.name}
+            </h1>
+            <p className="mt-2 text-sm text-muted-foreground">
+              by {logo.designer}
+            </p>
             <p className="text-muted-foreground">{logo.description}</p>
-
             <div className="mt-1 flex items-center gap-2">
-              <span className="to mb-5 w-fit overflow-hidden rounded-full border bg-background/10 bg-linear-to-b from-primary/10 px-3 py-1 text-xs text-muted-foreground ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
+              <span className="to mb-5 w-fit overflow-hidden rounded-md border bg-background/10 bg-linear-to-b from-primary/10 px-3 py-1 text-sm text-muted-foreground capitalize ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background sm:text-base dark:inset-shadow-white/20">
                 {logo.theme}
               </span>
-              <span className="to mb-5 w-fit overflow-hidden rounded-full border bg-background/10 bg-linear-to-b from-primary/10 px-3 py-1 text-xs text-muted-foreground ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
+              <span className="to mb-5 w-fit overflow-hidden rounded-md border bg-background/10 bg-linear-to-b from-primary/10 px-3 py-1 text-sm text-muted-foreground capitalize ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background sm:text-base dark:inset-shadow-white/20">
                 {logo.category}
               </span>
-              <span className="to mb-5 w-fit overflow-hidden rounded-full border bg-background/10 bg-linear-to-b from-primary/10 px-3 py-1 text-xs text-muted-foreground ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
+              <span className="to mb-5 w-fit overflow-hidden rounded-md border bg-background/10 bg-linear-to-b from-primary/10 px-3 py-1 text-sm text-muted-foreground capitalize ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background sm:text-base dark:inset-shadow-white/20">
                 <ViewCounter slug={logo.slug} />
               </span>
             </div>
           </div>
-          <div className="flex w-full lg:w-fit flex-col gap-1 sm:flex-row">
-            <TextureButton variant="accent" asChild>
-              <Link
-                href={logo.website_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 whitespace-nowrap"
-              >
+          <div className="mt-4 flex w-full flex-col gap-1 sm:mt-0 sm:flex-row lg:w-fit">
+            <Link
+              href={logo.website_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 whitespace-nowrap"
+            >
+              <TextureButton variant="accent" asChild>
                 View Source
                 <HugeiconsIcon
                   icon={SquareArrowUpRightIcon}
                   className="size-4"
                 />
-              </Link>
-            </TextureButton>
+              </TextureButton>
+            </Link>
             <DownloadButton logoUrl={logo.logo_url} logoName={logo.name} />
             <CopyButton logoUrl={logo.logo_url} />
           </div>
         </div>
 
-        <div className="relative aspect-video w-screen overflow-hidden">
+        <div className="relative mt-8 aspect-video w-screen overflow-hidden sm:mt-4">
           <Image
             src={logo.logo_url}
             alt={logo.name}
@@ -284,6 +270,45 @@ export default function LogoDetailContent({ logo }: { logo: Logo }) {
             <Skeleton className="absolute inset-0 h-full w-full rounded-xl" />
           )}
         </div>
+
+        {logo.mockups && logo.mockups.length > 0 && (
+          <>
+            <div className="mt-10">
+              <FullWidthDivider />
+              <h2 className="mt-8 font-heading text-xl sm:text-2xl">
+                Logo in Context
+              </h2>
+              <p className="text-sm text-muted-foreground sm:text-base">
+                Designs in different variations
+              </p>
+            </div>
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="relative aspect-video h-[50vh] w-full overflow-hidden rounded-xl border bg-background ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
+                <Image
+                  src={logo.logo_url}
+                  alt={logo.name}
+                  fill
+                  className="rounded-xl object-cover"
+                  unoptimized
+                />
+              </div>
+              {logo.mockups.map((mockup, index) => (
+                <div
+                  key={index}
+                  className="relative aspect-video h-[50vh] w-full overflow-hidden rounded-xl border bg-background ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20"
+                >
+                  <Image
+                    src={mockup}
+                    alt={`${logo.name} mockup ${index + 1}`}
+                    fill
+                    className="rounded-xl object-cover"
+                    unoptimized
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </main>
   )

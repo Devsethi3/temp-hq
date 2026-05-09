@@ -4,12 +4,10 @@ import { GithubIcon } from "@hugeicons/core-free-icons"
 import { Logo } from "./logo"
 
 const navLinks = [
-  { href: "#", label: "Features" },
-  { href: "#", label: "Blog" },
-  { href: "#", label: "About" },
-  { href: "#", label: "Contact" },
-  { href: "#", label: "Licence" },
+  { href: "#", label: "Gallery" },
+  { href: "#", label: "Bookmarks" },
   { href: "#", label: "Privacy" },
+  { href: "#", label: "Terms" },
 ]
 
 const socialLinks = [

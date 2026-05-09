@@ -121,27 +121,45 @@ function LogoCard({
           unoptimized
         />
       </div>
+      {/* Always show bookmark icon if bookmarked */}
+      {isBookmarked && (
+        <div className="absolute top-3 right-3 rounded-full bg-primary p-2 text-primary-foreground">
+          <svg
+            className="h-4 w-4"
+            fill="currentColor"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+            />
+          </svg>
+        </div>
+      )}
       <div
         className={cn(
           "absolute inset-0 opacity-0 transition-opacity duration-300",
-          "group-hover:opacity-100"
+          "group-hover:opacity-100",
+          isBookmarked && "group-hover:opacity-100"
         )}
       >
-        <BookmarkButton
-          logo={logo}
-          isBookmarked={isBookmarked}
-          onToggle={onToggleBookmark}
-        />
+        {!isBookmarked && (
+          <BookmarkButton
+            logo={logo}
+            isBookmarked={isBookmarked}
+            onToggle={onToggleBookmark}
+          />
+        )}
         <div
           className={cn(
             "absolute bottom-0 w-full rounded-xl p-4 pt-12 text-white",
             "bg-gradient-to-t from-black/80 to-transparent"
           )}
         >
-          <h3 className="truncate">
-            
-            {logo.name}
-          </h3>
+          <h3 className="truncate">{logo.name}</h3>
           <p className="mt-0.5 truncate text-xs text-white/80">
             by {logo.designer}
           </p>

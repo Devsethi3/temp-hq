@@ -8,4 +8,5 @@ export interface Logo {
   category: string
   logo_url: string
   theme: string
+  mockups?: string[]
 }

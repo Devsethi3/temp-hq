@@ -17,7 +17,7 @@ export default function HomePage() {
   })
 
   return (
-    <div className="mx-auto min-h-screen max-w-7xl border-x px-4">
+    <div className="mx-auto min-h-screen max-w-7xl border-x px-4 lg:overflow-visible overflow-hidden">
       <Header />
       <HeroSection />
       <main className="py-12">

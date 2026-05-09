@@ -7,7 +7,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Beige",
     "website_url": "https://x.com/devxnuj/status/2046561429344641243",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/portflow.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/portflow.webp",
     "theme": "beige"
   },
   {
@@ -18,7 +18,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Purple",
     "website_url": "https://www.instagram.com/p/DWmFu2Qj5Dm/",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/verse.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/verse.webp",
     "theme": "purple"
   },
   {
@@ -29,18 +29,18 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Orange",
     "website_url": "https://x.com/poulisn/status/2042776628502081956",
     "category": "food",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/gojiberry.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/gojiberry.webp",
     "theme": "orange"
   },
   {
-    "id": 4,
+    "id": 24,
     "name": "Herman Miller",
     "slug": "herman-miller",
     "designer": "order",
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Black",
     "website_url": "https://www.cosmos.so/e/1675354418",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/hermanmiller.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/hermanmiller.webp",
     "theme": "black"
   },
   {
@@ -51,7 +51,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
     "website_url": "https://x.com/HamzaInstantly/status/2036805424800788923",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/adoro.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/adoro.webp",
     "theme": "blue"
   },
   {
@@ -62,7 +62,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Pink",
     "website_url": "https://x.com/Ahmedcreatives/status/2046942199225647355",
     "category": "ai",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/metricai.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/metricai.webp",
     "theme": "pink"
   },
   {
@@ -73,7 +73,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
     "website_url": "https://x.com/devxnuj/status/2042624126574301416",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/wavedesk.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/wavedesk.webp",
     "theme": "blue"
   },
   {
@@ -84,7 +84,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
     "website_url": "https://x.com/VadimCarazan/status/2034303051805155425",
     "category": "tech",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/reclaim.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/reclaim.webp",
     "theme": "blue"
   },
   {
@@ -95,7 +95,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol. Green",
     "website_url": "https://x.com/OluwatobiOtun/status/2030953174824079479",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/designwhiz.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/designwhiz.webp",
     "theme": "green"
   },
   {
@@ -106,7 +106,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Purple",
     "website_url": "https://x.com/dzineloop/status/2036044485390709087",
     "category": "ai",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/flourishLab.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/flourishLab.webp",
     "theme": "purple"
   },
   {
@@ -117,7 +117,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol. Teal",
     "website_url": "https://x.com/drey_willz/status/2030674437838623202",
     "category": "tech",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/nova.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/nova.webp",
     "theme": "teal"
   },
   {
@@ -128,7 +128,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
     "website_url": "https://x.com/ayushsoni_io/status/2009247371235061967",
     "category": "tech",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/sequence.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/sequence.webp",
     "theme": "blue"
   },
   {
@@ -139,7 +139,7 @@
     "description": "A curated logo reference from the inspiration library. Wordmark. Blue",
     "website_url": "https://www.instagram.com/p/C7m1_3BPVzT/?img_index=1",
     "category": "tech",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/prospeer.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/prospeer.webp",
     "theme": "blue"
   },
   {
@@ -150,7 +150,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Purple",
     "website_url": "https://x.com/keilethh/status/1839347606591615171",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/arkade-studio.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/arkade-studio.webp",
     "theme": "purple"
   },
   {
@@ -161,7 +161,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. White",
     "website_url": "https://x.com/CedrikStephen/status/2031695631320781258",
     "category": "ai",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/amano-labs.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/amano-labs.webp",
     "theme": "white"
   },
   {
@@ -172,7 +172,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. White",
     "website_url": "https://www.linkedin.com/posts/sublimio_new-case-study-preview-upstairz-elevate-activity-7223630267876315136--XYa",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/upstairz.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/upstairz.webp",
     "theme": "white"
   },
   {
@@ -183,8 +183,13 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Pink",
     "website_url": "https://x.com/ShadowedArts/status/2029624732728107394",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/ostraka.webp",
-    "theme": "pink"
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/ostraka.webp",
+    "theme": "pink",
+    "mockups": [
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/ostraka/1.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/ostraka/2.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/ostraka/3.webp"
+    ]
   },
   {
     "id": 18,
@@ -194,7 +199,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol. Beige",
     "website_url": "https://x.com/samstooff",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/sunrise.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/sunrise.webp",
     "theme": "beige"
   },
   {
@@ -205,7 +210,7 @@
     "description": "A curated logo reference from the inspiration library. Wordmark. Green",
     "website_url": "https://x.com/lukasrendl/status/1876658675554959801",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/jamjam.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/jamjam.webp",
     "theme": "green"
   },
   {
@@ -216,7 +221,7 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
     "website_url": "https://www.behance.net/gallery/213509845/Linker",
     "category": "tech",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/linker.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/linker.webp",
     "theme": "blue"
   },
   {
@@ -227,7 +232,7 @@
     "description": "A curated logo reference from the inspiration library. Wordmark. Blue",
     "website_url": "https://x.com/fattahzuni/status/1976988506871545967",
     "category": "tech",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/geniuz.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/geniuz.webp",
     "theme": "blue"
   },
   {
@@ -238,7 +243,50 @@
     "description": "A curated logo reference from the inspiration library. Symbol & Text. Yellow",
     "website_url": "https://www.instagram.com/p/C-Xbt7WSI-U/?img_index=1",
     "category": "design",
-    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/podio.webp",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/podio.webp",
     "theme": "yellow"
+  },
+  {
+    "id": 23,
+    "name": "Aurix",
+    "slug": "aurix",
+    "designer": "Dzineloop",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Red",
+    "website_url": "https://x.com/dzineloop/status/2034611488619647364",
+    "category": "design",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/aurix.webp",
+    "theme": "red",
+    "mockups": [
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/aurix/1.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/aurix/2.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/aurix/3.webp"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Nodus",
+    "slug": "nodus",
+    "designer": "lucasxfields",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Black",
+    "website_url": "https://x.com/lucasxfields/status/2046934973119144317",
+    "category": "design",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/nodus.webp",
+    "theme": "black"
+  },
+  {
+    "id": 25,
+    "name": "Grove",
+    "slug": "grove",
+    "designer": "BuffetDesigns",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Green",
+    "website_url": "https://x.com/BuffetDesigns/status/2047710142146474215",
+    "category": "design",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/grove.webp",
+    "theme": "green",
+    "mockups": [
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/grove/1.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/grove/2.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/grove/3.webp"
+    ]
   }
 ]

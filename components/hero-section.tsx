@@ -23,21 +23,9 @@ interface Logo {
 
 const HeroSection = () => {
   const [logos, setLogos] = useState<Logo[]>([])
-  const [loading, setLoading] = useState(false)
-  const fetched = useRef(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (fetched.current) return
-    fetched.current = true
-
-    setLoading(true)
-    const cached = localStorage.getItem("hero_logos")
-    if (cached) {
-      setLogos(JSON.parse(cached))
-      setLoading(false)
-      return
-    }
-
     fetch("/api/logos")
       .then((res) => res.json())
       .then((data: { logos: Logo[] }) => {
@@ -47,7 +35,6 @@ const HeroSection = () => {
         )
         const sliced = filtered.slice(0, 10)
         setLogos(sliced)
-        localStorage.setItem("hero_logos", JSON.stringify(sliced))
       })
       .catch(() => {})
       .finally(() => setLoading(false))
@@ -58,7 +45,7 @@ const HeroSection = () => {
       <NoiseBackground />
       <div className="flex flex-col items-center justify-center py-16">
         <div className="flex flex-col items-center text-center">
-          <span className="to mb-5 w-fit overflow-hidden rounded-full border bg-background/10 bg-linear-to-b from-primary/10 px-3 py-1 text-xs text-muted-foreground ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
+          <span className="to mb-5 w-fit overflow-hidden rounded-md border bg-background/10 bg-linear-to-b from-primary/10 px-3 py-1 text-sm text-muted-foreground ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
             50+ New Logos Added
           </span>
 

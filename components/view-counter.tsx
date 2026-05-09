@@ -32,16 +32,16 @@ export function ViewCounter({ slug }: ViewCounterProps) {
 
   if (loading || views === null) {
     return (
-      <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-        <HugeiconsIcon icon={ViewIcon} className="size-3.5" />
+      <span className="flex items-center gap-1.5 text-muted-foreground">
+        <HugeiconsIcon icon={ViewIcon} className="size-4" />
         <span className="h-3 w-8 animate-pulse rounded bg-muted" />
       </span>
     )
   }
 
   return (
-    <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-      <HugeiconsIcon icon={ViewIcon} className="size-3.5" />
+    <span className="flex items-center gap-1.5 text-muted-foreground">
+      <HugeiconsIcon icon={ViewIcon} className="size-4" />
       <span>{views.toLocaleString()}</span>
     </span>
   )

@@ -154,7 +154,9 @@ export default function SimilarLogos({ currentSlug }: SimilarLogosProps) {
 
   return (
     <section className="pt-16">
-      <h2 className="mb-6 font-heading text-2xl font-light">Similar Logos</h2>
+      <h2 className="mb-6 font-heading text-xl font-light sm:text-2xl">
+        Similar Logos
+      </h2>
       <div className="columns-1 gap-4 sm:columns-2 md:columns-3 lg:columns-3">
         {logos.map((logo) => (
           <Link
@@ -173,34 +175,53 @@ export default function SimilarLogos({ currentSlug }: SimilarLogosProps) {
               />
             </div>
 
+            {/* Always show bookmark icon if bookmarked */}
+            {isBookmarked(logo.id) && (
+              <div className="absolute top-3 right-3 rounded-full bg-primary p-2 text-primary-foreground">
+                <svg
+                  className="h-4 w-4"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+                  />
+                </svg>
+              </div>
+            )}
+
             <div
               className={cn(
                 "absolute inset-0 opacity-0 transition-opacity duration-300",
                 "group-hover:opacity-100"
               )}
             >
-              <BookmarkBtn
-                isBookmarked={isBookmarked(logo.id)}
-                onToggle={() =>
-                  toggleBookmark({
-                    id: logo.id,
-                    name: logo.name,
-                    slug: logo.slug,
-                    designer: logo.designer,
-                    category: logo.category,
-                    logoUrl: logo.logo_url,
-                  })
-                }
-              />
+              {!isBookmarked(logo.id) && (
+                <BookmarkBtn
+                  isBookmarked={isBookmarked(logo.id)}
+                  onToggle={() =>
+                    toggleBookmark({
+                      id: logo.id,
+                      name: logo.name,
+                      slug: logo.slug,
+                      designer: logo.designer,
+                      category: logo.category,
+                      logoUrl: logo.logo_url,
+                    })
+                  }
+                />
+              )}
               <div
                 className={cn(
                   "absolute bottom-0 w-full p-4 pt-12 text-white",
                   "bg-gradient-to-t from-black/70 to-transparent"
                 )}
               >
-                <h3 className="truncate">
-                  {logo.name}
-                </h3>
+                <h3 className="truncate">{logo.name}</h3>
                 <p className="truncate text-xs text-white/80">
                   by {logo.designer}
                 </p>

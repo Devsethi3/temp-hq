@@ -78,23 +78,31 @@ function CopyButton({ logoUrl }: { logoUrl: string }) {
   const handleCopy = async () => {
     setLoading(true)
     try {
-      const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(logoUrl)}`
-      const response = await fetch(proxyUrl)
-      if (!response.ok) throw new Error("Failed to fetch")
-      const blob = await response.blob()
-      await navigator.clipboard.write([
-        new ClipboardItem({ [blob.type]: blob }),
-      ])
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch {
-      try {
-        await navigator.clipboard.writeText(logoUrl)
+      const res = await fetch("/api/logos/copy-image", {
+        method: "POST",
+        body: JSON.stringify({ url: logoUrl }),
+        headers: { "Content-Type": "application/json" },
+      })
+      const { data: dataUrl } = await res.json()
+
+      const img = new window.Image()
+      img.src = dataUrl
+      await new Promise((r) => (img.onload = r))
+
+      const c = document.createElement("canvas")
+      c.width = img.width
+      c.height = img.height
+      c.getContext("2d")!.drawImage(img, 0, 0)
+
+      c.toBlob(async (b) => {
+        await navigator.clipboard.write([
+          new ClipboardItem({ "image/png": b! }),
+        ])
         setCopied(true)
         setTimeout(() => setCopied(false), 2000)
-      } catch (e) {
-        console.error("Copy failed:", e)
-      }
+      }, "image/png")
+    } catch (e) {
+      console.error("Copy failed:", e)
     }
     setLoading(false)
   }

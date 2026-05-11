@@ -24,6 +24,7 @@
   "registries": {
     "@kibo-ui": "https://www.kibo-ui.com/r/{name}.json",
     "@coss": "https://coss.com/ui/r/{name}.json",
-    "@unlumen-ui": "https://ui.unlumen.com/r/{name}.json"
+    "@unlumen-ui": "https://ui.unlumen.com/r/{name}.json",
+    "@magicui": "https://magicui.design/r/{name}"
   }
 }

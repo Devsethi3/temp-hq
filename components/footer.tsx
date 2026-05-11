@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { GithubIcon } from "@hugeicons/core-free-icons"
 import { Logo } from "./logo"
+import Link from "next/link"
 
 const navLinks = [
-  { href: "#", label: "Gallery" },
-  { href: "#", label: "Bookmarks" },
+  { href: "#gallery", label: "Gallery" },
+  { href: "/bookmarks", label: "Bookmarks" },
   { href: "#", label: "Privacy" },
   { href: "#", label: "Terms" },
 ]
@@ -46,9 +47,9 @@ export function Footer() {
           <ul className="flex flex-wrap gap-4 text-sm font-medium text-muted-foreground md:gap-6">
             {navLinks.map((link) => (
               <li key={link.label}>
-                <a className="hover:text-foreground" href={link.href}>
+                <Link className="hover:text-foreground" href={link.href}>
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

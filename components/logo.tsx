@@ -8,11 +8,11 @@ type LogoProps = {
 
 export function Logo({ className, showText = true }: LogoProps) {
   return (
-    <div className={cn("inline-flex items-center gap-2", className)}>
-      <Image src={"/logo.svg"} width={30} height={30} alt="logo" />
+    <div className={cn("inline-flex items-center gap-2 pt-1", className)}>
+      <Image src={"/logo.svg"} width={25} height={25} alt="logo" />
       {showText ? (
-        <span className="font-heading text-base text-foreground">
-          LOGO
+        <span className="font-heading text-lg text-foreground/80 ">
+          LogoVault
         </span>
       ) : null}
     </div>

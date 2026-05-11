@@ -109,7 +109,7 @@ function CopyButton({ logoUrl }: { logoUrl: string }) {
 
   return (
     <TextureButton
-      variant={copied ? "accent" : "minimal"}
+      variant="minimal"
       onClick={handleCopy}
       disabled={loading}
       className="flex items-center gap-2 whitespace-nowrap disabled:opacity-50"

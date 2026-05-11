@@ -93,7 +93,7 @@ const LogoSection = ({ onFilterChange }: LogoSectionProps) => {
   return (
     <div className="w-full">
       <FullWidthDivider />
-      <div className="flex flex-col items-center gap-2 pt-16 lg:flex-row">
+      <div className="flex flex-col items-center gap-2 pt-10 lg:flex-row">
         <InputGroup className="h-10 w-full">
           <InputGroupAddon>
             <HugeiconsIcon icon={SearchIcon} aria-hidden="true" />

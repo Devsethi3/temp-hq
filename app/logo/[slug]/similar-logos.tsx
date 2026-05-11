@@ -153,7 +153,7 @@ export default function SimilarLogos({ currentSlug }: SimilarLogosProps) {
   if (!logos.length) return null
 
   return (
-    <section className="pt-16">
+    <section className="py-10">
       <h2 className="mb-6 font-heading text-xl font-light sm:text-2xl">
         Similar Logos
       </h2>

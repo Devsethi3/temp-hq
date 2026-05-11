@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://logo-inspo.vercel.app/sitemap.xml

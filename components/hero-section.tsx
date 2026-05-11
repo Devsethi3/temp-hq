@@ -14,6 +14,7 @@ import { TextureButton } from "./ui/texture-button"
 import { FullWidthDivider } from "./ui/full-width-divider"
 import { BorderCross } from "./ui/border-cross"
 import { Skeleton } from "./ui/skeleton"
+import Link from "next/link"
 
 interface Logo {
   id: number
@@ -49,23 +50,27 @@ const HeroSection = () => {
             50+ New Logos Added
           </span>
 
-          <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl">
-            1,150 The Ultimate Logo <br /> Design{" "}
+          <h1 className="font-heading text-3xl leading-[1.2] md:text-4xl lg:text-5xl">
+            Discover Logos That <br /> Inspire{" "}
             <span className="bg-primary text-white dark:text-black">
-              Inspiration Library
+              Better Branding
             </span>
           </h1>
 
           <p className="mt-6 max-w-lg text-muted-foreground">
-            Explore 1,200+ hand-picked real and fictional logos searchable by
-            style, industry, and color.
+            A searchable collection of standout logo designs for designers,
+            founders, and creatives building memorable brands.
           </p>
 
           <div className="mt-8 flex flex-row gap-4">
-            <TextureButton className="whitespace-nowrap">
-              Explore Logos
-            </TextureButton>
-            <TextureButton variant="minimal">View Gallery</TextureButton>
+            <Link href="#gallery">
+              <TextureButton className="whitespace-nowrap">
+                Explore Logos
+              </TextureButton>
+            </Link>
+            <Link href="/bookmarks">
+              <TextureButton variant="minimal">View Saved</TextureButton>
+            </Link>
           </div>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
@@ -97,14 +102,14 @@ const HeroSection = () => {
             <MarqueeContent>
               {loading
                 ? [...Array(10)].map((_, i) => (
-                    <MarqueeItem className="h-40 w-40 shrink-0" key={i}>
+                    <MarqueeItem className="h-40 w-56 shrink-0" key={i}>
                       <div className="relative flex h-full w-full items-center justify-center rounded-xl border bg-background p-2 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
                         <Skeleton className="h-full w-full rounded-xl" />
                       </div>
                     </MarqueeItem>
                   ))
                 : logos.map((logo) => (
-                    <MarqueeItem className="h-40 w-40 shrink-0" key={logo.id}>
+                    <MarqueeItem className="h-40 w-56 shrink-0" key={logo.id}>
                       <div className="relative flex h-full w-full items-center justify-center rounded-xl border bg-background p-2 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
                         <Image
                           src={logo.logo_url}

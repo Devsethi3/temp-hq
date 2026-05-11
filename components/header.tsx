@@ -7,6 +7,10 @@ import Link from "next/link"
 import { Logo } from "./logo"
 import { FullWidthDivider } from "./ui/full-width-divider"
 import { BorderCross } from "./ui/border-cross"
+import { TextureButton } from "./ui/texture-button"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Bookmark01Icon } from "@hugeicons/core-free-icons"
+import ThemeToggle from "./ui/theme-toggle"
 
 export function Header() {
   const scrolled = useScroll(10)
@@ -26,9 +30,13 @@ export function Header() {
           <Logo />
         </Link>
         <div className="flex items-center gap-2">
-          <Button asChild variant="link">
-            <Link href="/bookmarks">Bookmarks</Link>
-          </Button>
+          <ThemeToggle />
+          <Link href="/bookmarks">
+            <TextureButton asChild className="text-sm! h-9! rounded-lg flex items-center" size="sm" variant="minimal">
+              <HugeiconsIcon icon={Bookmark01Icon} className="size-3.5 mr-2" />
+              <span className='pt-0.5'>Saved</span>
+            </TextureButton>
+          </Link>
         </div>
       </nav>
     </header>

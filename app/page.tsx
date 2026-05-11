@@ -20,7 +20,7 @@ export default function HomePage() {
     <div className="mx-auto min-h-screen max-w-7xl border-x px-4 lg:overflow-visible overflow-hidden">
       <Header />
       <HeroSection />
-      <main className="py-12">
+      <main className="py-12" id="gallery">
         <LogoSection onFilterChange={setFilters} />
         <LogoGallery
           category={filters.category}

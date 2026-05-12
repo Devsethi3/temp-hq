@@ -288,5 +288,85 @@
       "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/grove/2.webp",
       "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/grove/3.webp"
     ]
+  },
+  {
+    "id": 26,
+    "name": "Fugitive",
+    "slug": "fugitive",
+    "designer": "Drapz",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
+    "website_url": "https://x.com/drapzdesigns/status/2052765466612080857",
+    "category": "tech",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/fugitive.webp",
+    "theme": "blue",
+    "mockups": [
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/fugitive/1.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/fugitive/2.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/fugitive/3.webp"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Kinect",
+    "slug": "kinect",
+    "designer": "Drapz",
+    "description": "Kinect - Visual Identity project. Clean",
+    "website_url": "https://x.com/drapzdesigns/status/2053857378081321188",
+    "category": "tech",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/kinect.webp",
+    "theme": "white",
+    "mockups": [
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/kinect/1.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/kinect/2.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/kinect/3.webp"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Lumoor",
+    "slug": "lumoor",
+    "designer": "Azeez",
+    "description": "A curated logo reference from the inspiration library. Minimal. Violet",
+    "website_url": "https://x.com/khrcreatives/status/2052767235681206397",
+    "category": "design",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/lumoor.webp",
+    "theme": "purple",
+    "mockups": [
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/lumoor/1.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/lumoor/2.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/lumoor/3.webp"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Unora",
+    "slug": "unora",
+    "designer": "Azeez",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
+    "website_url": "https://x.com/khrcreatives/status/2044349596550181014",
+    "category": "saas",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/unora.webp",
+    "theme": "blue",
+    "mockups": [
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/unora/1.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/unora/2.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/unora/3.webp"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Striv",
+    "slug": "striv",
+    "designer": "monogramdude",
+    "description": "A curated logo reference from the inspiration library. Modern. Green",
+    "website_url": "https://x.com/monogramdude/status/2053118231205077399",
+    "category": "tech",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/striv.webp",
+    "theme": "green",
+    "mockups": [
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/striv/1.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/striv/2.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/striv/3.webp"
+    ]
   }
 ]

@@ -33,7 +33,7 @@
     "theme": "orange"
   },
   {
-    "id": 24,
+    "id": 56,
     "name": "Herman Miller",
     "slug": "herman-miller",
     "designer": "order",
@@ -645,7 +645,7 @@
     "theme": "green"
   },
   {
-    "id": 56,
+    "id": 24,
     "name": "Optistream",
     "slug": "optistream",
     "designer": "Elbu Studio",

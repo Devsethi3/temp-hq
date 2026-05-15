@@ -158,6 +158,45 @@ const BookmarkButton = memo(({ logo }: { logo: Logo }) => {
   )
 })
 
+const ShareButton = memo(({ logo }: { logo: Logo }) => {
+  const [loading, setLoading] = useState(false)
+
+  const handleShare = async () => {
+    try {
+      setLoading(true)
+
+      const shareData = {
+        title: `${logo.name} Logo`,
+        text: `Check out this ${logo.name} logo inspiration`,
+        url: window.location.href,
+      }
+
+      if (navigator.share) {
+        await navigator.share(shareData)
+      } else {
+        await navigator.clipboard.writeText(window.location.href)
+        alert("Link copied to clipboard!")
+      }
+    } catch (error) {
+      console.error("Share failed:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <Button
+      size="icon"
+      variant="outline"
+      onClick={handleShare}
+      disabled={loading}
+      className="flex items-center gap-2"
+    >
+      <HugeiconsIcon icon={Share08Icon} className="size-4" />
+    </Button>
+  )
+})
+
 function LogoDetailSkeleton() {
   return (
     <main className="py-6">
@@ -205,13 +244,7 @@ export default function LogoDetailContent({ logo }: { logo: Logo }) {
         </Button>
         <div className="flex items-center gap-2">
           <BookmarkButton logo={logo} />
-          <Button
-            size="icon"
-            variant="outline"
-            className="flex items-center gap-2"
-          >
-            <HugeiconsIcon icon={Share08Icon} className="size-4" />
-          </Button>
+          <ShareButton logo={logo} />
         </div>
       </div>
       <div className="flex flex-wrap lg:mt-2">

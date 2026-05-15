@@ -1,4 +1,5 @@
 "use client"
+import { memo } from "react"
 import { cn } from "@/lib/utils"
 import { useScroll } from "@/hooks/use-scroll"
 import { Button } from "@/components/ui/button"
@@ -12,7 +13,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { Bookmark01Icon } from "@hugeicons/core-free-icons"
 import ThemeToggle from "./ui/theme-toggle"
 
-export function Header() {
+export const Header = memo(() => {
   const scrolled = useScroll(10)
 
   return (
@@ -41,4 +42,4 @@ export function Header() {
       </nav>
     </header>
   )
-}
+})

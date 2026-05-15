@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 import { Input } from "./ui/input"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./ui/input-group"
 import { HugeiconsIcon } from "@hugeicons/react"
@@ -36,11 +36,20 @@ interface LogoSectionProps {
 
 const categories = [
   { value: "all", label: "All" },
-  { value: "design", label: "Design", count: 3 },
-  { value: "food", label: "Food", count: 1 },
-  { value: "ai", label: "AI", count: 0 },
-  { value: "saas", label: "SaaS", count: 0 },
-  { value: "tech", label: "Tech", count: 0 },
+  { value: "design", label: "Design" },
+  { value: "tech", label: "Tech" },
+  { value: "saas", label: "SaaS" },
+  { value: "ai", label: "AI" },
+  { value: "food", label: "Food" },
+  { value: "fashion", label: "Fashion" },
+  { value: "finance", label: "Finance" },
+  { value: "health", label: "Health" },
+  { value: "education", label: "Education" },
+  // { value: "realestate", label: "Real Estate" },
+  // { value: "entertainment", label: "Entertainment" },
+  // { value: "sports", label: "Sports" },
+  // { value: "travel", label: "Travel" },
+  // { value: "music", label: "Music" },
 ]
 
 const sortOptions = [
@@ -55,19 +64,24 @@ const sortOptions = [
 
 const themeColors = [
   { value: "all", label: "All", color: "transparent" },
-  { value: "beige", label: "Beige", color: "#D4B896" },
-  { value: "purple", label: "Purple", color: "#8B5CF6" },
-  { value: "orange", label: "Orange", color: "#F97316" },
   { value: "black", label: "Black", color: "#171717" },
-  { value: "blue", label: "Blue", color: "#3B82F6" },
-  { value: "pink", label: "Pink", color: "#EC4899" },
+  { value: "white", label: "White", color: "#F5F5F5" },
+  { value: "grey", label: "Grey", color: "#6B7280" },
+  { value: "red", label: "Red", color: "#EF4444" },
+  { value: "orange", label: "Orange", color: "#F97316" },
+  { value: "yellow", label: "Yellow", color: "#EAB308" },
   { value: "green", label: "Green", color: "#22C55E" },
   { value: "teal", label: "Teal", color: "#14B8A6" },
-  { value: "white", label: "White", color: "#F5F5F5" },
-  { value: "yellow", label: "Yellow", color: "#EAB308" },
+  { value: "blue", label: "Blue", color: "#3B82F6" },
+  { value: "purple", label: "Purple", color: "#8B5CF6" },
+  { value: "pink", label: "Pink", color: "#EC4899" },
+  { value: "beige", label: "Beige", color: "#D4B896" },
+  { value: "brown", label: "Brown", color: "#8B4513" },
+  { value: "navy", label: "Navy", color: "#1E3A5F" },
+  { value: "maroon", label: "Maroon", color: "#800000" },
 ]
 
-const LogoSection = ({ onFilterChange }: LogoSectionProps) => {
+const LogoSection = memo(({ onFilterChange }: LogoSectionProps) => {
   const [activeCategory, setActiveCategory] = useState("all")
   const [sortBy, setSortBy] = useState("latest")
   const [activeTheme, setActiveTheme] = useState("all")
@@ -93,7 +107,7 @@ const LogoSection = ({ onFilterChange }: LogoSectionProps) => {
   return (
     <div className="w-full">
       <FullWidthDivider />
-      <div className="flex flex-col items-center gap-2 pt-10 lg:flex-row">
+      <div className="flex flex-col items-center gap-2 pt-6 lg:flex-row">
         <InputGroup className="h-10 w-full">
           <InputGroupAddon>
             <HugeiconsIcon icon={SearchIcon} aria-hidden="true" />
@@ -160,8 +174,7 @@ const LogoSection = ({ onFilterChange }: LogoSectionProps) => {
               <TextureButton
                 variant="minimal"
                 size={isMobile ? "sm" : "default"}
-
-                className="w-full whitespace-nowrap sm:h-10 h-9 rounded-lg"
+                className="h-9 w-full rounded-lg whitespace-nowrap sm:h-10"
               >
                 <HugeiconsIcon icon={Sorting02Icon} className="mr-2 size-4" />
                 {activeSortData?.label}
@@ -196,9 +209,8 @@ const LogoSection = ({ onFilterChange }: LogoSectionProps) => {
               <TextureButton
                 variant="minimal"
                 size={isMobile ? "sm" : "default"}
-
                 // variant={activeTheme !== "all" ? "accent" : "minimal"}
-                className="w-full sm:h-10 h-9 rounded-lg"
+                className="h-9 w-full rounded-lg sm:h-10"
               >
                 <HugeiconsIcon icon={PaintBoardIcon} className="mr-2 size-4" />
                 {activeTheme !== "all" ? activeThemeData?.label : "Theme"}
@@ -210,8 +222,8 @@ const LogoSection = ({ onFilterChange }: LogoSectionProps) => {
                 )}
               </TextureButton>
             </PopoverTrigger>
-            <PopoverContent className="w-48 p-2" align="end">
-              <div className="grid grid-cols-3 gap-2">
+            <PopoverContent className="w-64 p-2" align="end">
+              <div className="grid grid-cols-4 gap-2">
                 {themeColors.map((theme) => (
                   <button
                     key={theme.value}
@@ -243,7 +255,7 @@ const LogoSection = ({ onFilterChange }: LogoSectionProps) => {
       </div>
     </div>
   )
-}
+})
 
 export default LogoSection
 export { type Logo }

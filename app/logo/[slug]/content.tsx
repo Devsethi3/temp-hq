@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, memo } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { TextureButton } from "@/components/ui/texture-button"
@@ -13,6 +13,7 @@ import {
   CheckmarkCircleIcon,
   ArrowLeft01Icon,
   Bookmark01Icon,
+  Share08Icon,
 } from "@hugeicons/core-free-icons"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
@@ -22,56 +23,52 @@ import { useBookmarks } from "@/hooks/useBookmarks"
 import type { Logo } from "./types"
 import { FullWidthDivider } from "@/components/ui/full-width-divider"
 
-function DownloadButton({
-  logoUrl,
-  logoName,
-}: {
-  logoUrl: string
-  logoName: string
-}) {
-  const [loading, setLoading] = useState(false)
+const DownloadButton = memo(
+  ({ logoUrl, logoName }: { logoUrl: string; logoName: string }) => {
+    const [loading, setLoading] = useState(false)
 
-  const handleDownload = async () => {
-    setLoading(true)
-    try {
-      const downloadUrl = `/api/download?url=${encodeURIComponent(logoUrl)}&name=${encodeURIComponent(logoName)}`
-      const response = await fetch(downloadUrl)
-      if (!response.ok) throw new Error("Failed to fetch")
+    const handleDownload = async () => {
+      setLoading(true)
+      try {
+        const downloadUrl = `/api/download?url=${encodeURIComponent(logoUrl)}&name=${encodeURIComponent(logoName)}`
+        const response = await fetch(downloadUrl)
+        if (!response.ok) throw new Error("Failed to fetch")
 
-      const blob = await response.blob()
-      const url = URL.createObjectURL(blob)
-      const filename = `${logoName.toLowerCase().replace(/\s+/g, "-")}.png`
+        const blob = await response.blob()
+        const url = URL.createObjectURL(blob)
+        const filename = `${logoName.toLowerCase().replace(/\s+/g, "-")}.png`
 
-      const link = document.createElement("a")
-      link.href = url
-      link.download = filename
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      URL.revokeObjectURL(url)
-    } catch (error) {
-      console.error("Download failed:", error)
-      window.open(logoUrl, "_blank")
+        const link = document.createElement("a")
+        link.href = url
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+      } catch (error) {
+        console.error("Download failed:", error)
+        window.open(logoUrl, "_blank")
+      }
+      setLoading(false)
     }
-    setLoading(false)
+
+    return (
+      <TextureButton
+        asChild
+        onClick={handleDownload}
+        disabled={loading}
+        className={cn(
+          "flex cursor-pointer items-center gap-2 whitespace-nowrap disabled:opacity-50"
+        )}
+      >
+        <HugeiconsIcon icon={DownloadSquare01Icon} className="size-4" />
+        {loading ? "Downloading..." : "Download"}
+      </TextureButton>
+    )
   }
+)
 
-  return (
-    <TextureButton
-      asChild
-      onClick={handleDownload}
-      disabled={loading}
-      className={cn(
-        "flex cursor-pointer items-center gap-2 whitespace-nowrap disabled:opacity-50"
-      )}
-    >
-      <HugeiconsIcon icon={DownloadSquare01Icon} className="size-4" />
-      {loading ? "Downloading..." : "Download"}
-    </TextureButton>
-  )
-}
-
-function CopyButton({ logoUrl }: { logoUrl: string }) {
+const CopyButton = memo(({ logoUrl }: { logoUrl: string }) => {
   const [copied, setCopied] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -121,13 +118,12 @@ function CopyButton({ logoUrl }: { logoUrl: string }) {
       {copied ? "Copied!" : loading ? "Copying..." : "Copy Image"}
     </TextureButton>
   )
-}
+})
 
-function BookmarkButton({ logo }: { logo: Logo }) {
+const BookmarkButton = memo(({ logo }: { logo: Logo }) => {
   const [loading, setLoading] = useState(false)
   const { isBookmarked, toggleBookmark } = useBookmarks()
   const isActive = isBookmarked(logo.id)
-  const router = useRouter()
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -142,7 +138,6 @@ function BookmarkButton({ logo }: { logo: Logo }) {
     })
     setTimeout(() => {
       setLoading(false)
-      router.replace(`/logo/${logo.slug}`)
     }, 300)
   }
 
@@ -161,7 +156,7 @@ function BookmarkButton({ logo }: { logo: Logo }) {
       />
     </Button>
   )
-}
+})
 
 function LogoDetailSkeleton() {
   return (
@@ -194,17 +189,7 @@ function LogoDetailSkeleton() {
 
 export default function LogoDetailContent({ logo }: { logo: Logo }) {
   const router = useRouter()
-  const [loading, setLoading] = useState(true)
   const [imageLoaded, setImageLoaded] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 500)
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (loading) {
-    return <LogoDetailSkeleton />
-  }
 
   return (
     <main className="py-6">
@@ -218,7 +203,16 @@ export default function LogoDetailContent({ logo }: { logo: Logo }) {
           <HugeiconsIcon icon={ArrowLeft01Icon} className="size-4" />
           Back
         </Button>
-        <BookmarkButton logo={logo} />
+        <div className="flex items-center gap-2">
+          <BookmarkButton logo={logo} />
+          <Button
+            size="icon"
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <HugeiconsIcon icon={Share08Icon} className="size-4" />
+          </Button>
+        </div>
       </div>
       <div className="flex flex-wrap lg:mt-2">
         <div className="flex w-full flex-col items-center justify-between sm:flex-row">
@@ -271,7 +265,6 @@ export default function LogoDetailContent({ logo }: { logo: Logo }) {
               "rounded-xl object-contain transition-opacity duration-300",
               imageLoaded ? "opacity-100" : "opacity-0"
             )}
-            unoptimized
             onLoad={() => setImageLoaded(true)}
           />
           {!imageLoaded && (

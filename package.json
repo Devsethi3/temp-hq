@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "npx next dev --turbopack",
+    "dev": "next dev --turbopack",
     "dev:backend": "bun run server/index.ts",
     "build": "next build",
     "start": "next start",

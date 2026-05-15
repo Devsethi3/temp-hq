@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, memo } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import NoiseBackground from "./ui/noise-background"
@@ -15,31 +15,10 @@ import { FullWidthDivider } from "./ui/full-width-divider"
 import { BorderCross } from "./ui/border-cross"
 import { Skeleton } from "./ui/skeleton"
 import Link from "next/link"
+import { useHeroLogos } from "@/hooks/useHeroLogos"
 
-interface Logo {
-  id: number
-  name: string
-  logo_url: string
-}
-
-const HeroSection = () => {
-  const [logos, setLogos] = useState<Logo[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetch("/api/logos")
-      .then((res) => res.json())
-      .then((data: { logos: Logo[] }) => {
-        const skipUrl = "hermanmiller.webp"
-        const filtered = data.logos.filter(
-          (logo: Logo) => !logo.logo_url.includes(skipUrl)
-        )
-        const sliced = filtered.slice(0, 10)
-        setLogos(sliced)
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false))
-  }, [])
+const HeroSection = memo(() => {
+  const { data: logos = [], isLoading: loading } = useHeroLogos()
 
   return (
     <div className="relative">
@@ -81,12 +60,17 @@ const HeroSection = () => {
                 { src: "/dropbox.webp", alt: "Spotify" },
                 { src: "/loom.webp", alt: "Stripe" },
                 { src: "/airbnb.webp", alt: "Airbnb" },
-              ].map((logo, idx) => (
+              ].map((avatar: { src: string; alt: string }) => (
                 <div
-                  key={logo.alt}
+                  key={avatar.alt}
                   className="flex size-10 cursor-pointer items-center justify-center overflow-hidden rounded-xl border-[3px] border-background bg-muted shadow-sm transition-transform hover:z-10 hover:-translate-y-1"
                 >
-                  <Image src={logo.src} alt={logo.alt} width={40} height={40} />
+                  <Image
+                    src={avatar.src}
+                    alt={avatar.alt}
+                    width={40}
+                    height={40}
+                  />
                 </div>
               ))}
               <div className="flex size-10 cursor-pointer items-center justify-center rounded-xl border-[3px] border-background bg-muted/80 text-[11px] font-bold text-muted-foreground backdrop-blur-sm transition-colors hover:bg-muted">
@@ -96,7 +80,7 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="mt-16 flex w-full items-center justify-center">
-          <Marquee className="max-w-screen-xl">
+          <Marquee className="h-40 max-w-screen-xl">
             <MarqueeFade side="left" />
             <MarqueeFade side="right" />
             <MarqueeContent>
@@ -108,19 +92,33 @@ const HeroSection = () => {
                       </div>
                     </MarqueeItem>
                   ))
-                : logos.map((logo) => (
-                    <MarqueeItem className="h-40 w-56 shrink-0" key={logo.id}>
-                      <div className="relative flex h-full w-full items-center justify-center rounded-xl border bg-background p-2 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
-                        <Image
-                          src={logo.logo_url}
-                          alt={logo.name}
-                          fill
-                          className="rounded-xl object-cover"
-                          unoptimized
-                        />
-                      </div>
-                    </MarqueeItem>
-                  ))}
+                : logos.length > 0
+                  ? logos.map((logo) => (
+                      <MarqueeItem
+                        className="h-40 w-56 shrink-0"
+                        key={logo.id}
+                      >
+                        <div className="relative flex h-full w-full items-center justify-center rounded-xl border bg-background p-2 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
+                          <Image
+                            src={logo.logo_url}
+                            alt={logo.name}
+                            fill
+                            sizes="224px"
+                            className="rounded-2xl object-cover p-2"
+                          />
+                        </div>
+                      </MarqueeItem>
+                    ))
+                  : [...Array(5)].map((_, i) => (
+                      <MarqueeItem
+                        className="h-40 w-56 shrink-0"
+                        key={`fallback-${i}`}
+                      >
+                        <div className="flex h-full w-full items-center justify-center rounded-xl border bg-muted text-muted-foreground">
+                          No Logo
+                        </div>
+                      </MarqueeItem>
+                    ))}
             </MarqueeContent>
           </Marquee>
         </div>
@@ -130,6 +128,6 @@ const HeroSection = () => {
       <BorderCross className="-right-4 bottom-0 translate-x-1/2 translate-y-1/2" />
     </div>
   )
-}
+})
 
 export default HeroSection

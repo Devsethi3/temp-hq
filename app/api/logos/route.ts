@@ -4,6 +4,18 @@ import path from "path"
 
 export const dynamic = "force-dynamic"
 
+interface Logo {
+  id: number
+  name: string
+  slug: string
+  designer: string
+  description: string | null
+  website_url: string | null
+  category: string
+  logo_url: string
+  theme: string
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = request.nextUrl
@@ -17,37 +29,37 @@ export async function GET(request: NextRequest) {
     // await new Promise((resolve) => setTimeout(resolve, 2000))
 
     const filePath = path.join(process.cwd(), "db", "logos.json")
-    const data = JSON.parse(fs.readFileSync(filePath, "utf-8"))
+    const data = JSON.parse(fs.readFileSync(filePath, "utf-8")) as Logo[]
 
-    let filtered = data
+    let filtered = [...data]
 
     if (category && category !== "all") {
-      filtered = filtered.filter((l: any) => l.category === category)
+      filtered = filtered.filter((l: Logo) => l.category === category)
     }
     if (theme && theme !== "all") {
-      filtered = filtered.filter((l: any) => l.theme === theme)
+      filtered = filtered.filter((l: Logo) => l.theme === theme)
     }
     if (q) {
       const lower = q.toLowerCase()
       filtered = filtered.filter(
-        (l: any) =>
+        (l: Logo) =>
           l.name.toLowerCase().includes(lower) ||
           l.designer.toLowerCase().includes(lower)
       )
     }
 
     if (sort === "oldest") {
-      filtered.sort((a: any, b: any) => a.id - b.id)
+      filtered.sort((a: Logo, b: Logo) => a.id - b.id)
     } else {
-      filtered.sort((a: any, b: any) => b.id - a.id)
+      filtered.sort((a: Logo, b: Logo) => b.id - a.id)
     }
 
     if (cursor) {
       const cursorId = Number(cursor)
       if (sort === "oldest") {
-        filtered = filtered.filter((l: any) => l.id > cursorId)
+        filtered = filtered.filter((l: Logo) => l.id > cursorId)
       } else {
-        filtered = filtered.filter((l: any) => l.id < cursorId)
+        filtered = filtered.filter((l: Logo) => l.id < cursorId)
       }
     }
 

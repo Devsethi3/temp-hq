@@ -30,7 +30,7 @@ export function useLogos(
     queryKey: ["logos", category, theme, searchQuery, sortBy] as const,
     queryFn: async ({ pageParam }) => {
       const params = new URLSearchParams({
-        limit: "9",
+        limit: "12",
         sort: sortBy,
       })
 
@@ -58,5 +58,6 @@ export function useLogos(
     initialPageParam: undefined as number | undefined,
     getNextPageParam: (lastPage) =>
       lastPage.hasNextPage ? lastPage.nextCursor : undefined,
+    placeholderData: (previousData) => previousData,
   })
 }

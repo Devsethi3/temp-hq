@@ -1,3 +1,4 @@
+import { memo } from "react"
 import { Button } from "@/components/ui/button"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { GithubIcon } from "@hugeicons/core-free-icons"
@@ -24,7 +25,7 @@ const socialLinks = [
   },
 ]
 
-export function Footer() {
+export const Footer = memo(() => {
   return (
     <footer className="mx-auto max-w-7xl *:px-4">
       <div className="flex flex-col gap-6 py-6">
@@ -75,13 +76,13 @@ export function Footer() {
               src="https://github.com/shabanhr.png"
               width="auto"
             /> */}
-            Love
+            Innovation
           </a>
         </p>
       </div>
     </footer>
   )
-}
+})
 
 function XIcon(props: React.ComponentProps<"svg">) {
   return (

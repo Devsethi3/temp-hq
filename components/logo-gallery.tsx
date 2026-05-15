@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState, memo } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/empty"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { HelpCircleIcon } from "@hugeicons/core-free-icons"
+import { Share2Icon, CheckIcon } from "lucide-react"
 
 interface LogoGalleryProps {
   category?: string
@@ -26,22 +27,52 @@ interface LogoGalleryProps {
   sortBy?: string
 }
 
-function BookmarkButton({
+const ShareButton = memo(({ logo }: { logo: Logo }) => {
+  const [copied, setCopied] = useState(false)
+
+  const handleShare = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const url = `${window.location.origin}/logo/${logo.slug}`
+    navigator.clipboard.writeText(url)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <button
+      onClick={handleShare}
+      className={cn(
+        "absolute top-14 right-3 cursor-pointer rounded-full p-2 transition-all duration-300",
+        "bg-background/60 text-muted-foreground backdrop-blur-sm hover:bg-background/80 hover:text-foreground"
+      )}
+      aria-label="Share logo"
+    >
+      {copied ? (
+        <CheckIcon className="h-4 w-4 text-green-500" />
+      ) : (
+        <Share2Icon className="h-4 w-4" />
+      )}
+    </button>
+  )
+})
+
+const BookmarkButton = memo(({
   logo,
   isBookmarked,
   onToggle,
 }: {
   logo: Logo
   isBookmarked: boolean
-  onToggle: () => void
-}) {
+  onToggle: (logo: Logo) => void
+}) => {
   const [loading, setLoading] = useState(false)
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     setLoading(true)
-    onToggle()
+    onToggle(logo)
     setTimeout(() => setLoading(false), 300)
   }
 
@@ -92,17 +123,17 @@ function BookmarkButton({
       )}
     </button>
   )
-}
+})
 
-function LogoCard({
+const LogoCard = memo(({
   logo,
   isBookmarked,
   onToggleBookmark,
 }: {
   logo: Logo
   isBookmarked: boolean
-  onToggleBookmark: () => void
-}) {
+  onToggleBookmark: (logo: Logo) => void
+}) => {
   return (
     <Link
       href={`/logo/${logo.slug}`}
@@ -118,7 +149,6 @@ function LogoCard({
           width={400}
           height={300}
           className="h-auto w-full rounded-lg object-contain"
-          unoptimized
         />
       </div>
       {/* Always show bookmark icon if bookmarked */}
@@ -146,6 +176,7 @@ function LogoCard({
           isBookmarked && "group-hover:opacity-100"
         )}
       >
+        <ShareButton logo={logo} />
         {!isBookmarked && (
           <BookmarkButton
             logo={logo}
@@ -167,9 +198,9 @@ function LogoCard({
       </div>
     </Link>
   )
-}
+})
 
-function LogoCardSkeleton() {
+const LogoCardSkeleton = memo(() => {
   return (
     <div className="mb-4">
       <div className="flex h-full w-full items-center justify-center rounded-xl border bg-background p-2 shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 ring-background dark:inset-shadow-white/20">
@@ -177,7 +208,7 @@ function LogoCardSkeleton() {
       </div>
     </div>
   )
-}
+})
 
 const SKELETON_COUNT = 6
 
@@ -215,6 +246,7 @@ export function LogoGallery({
     hasNextPage,
     isFetchingNextPage,
     isLoading,
+    isFetching,
     isError,
   } = useLogos(category, theme, searchQuery, sortBy)
   const {
@@ -247,7 +279,10 @@ export function LogoGallery({
     [hasNextPage, isFetchingNextPage, fetchNextPage]
   )
 
-  const allLogos = data?.pages.flatMap((page) => page.logos) ?? []
+  const allLogos = useMemo(
+    () => data?.pages.flatMap((page) => page.logos) ?? [],
+    [data]
+  )
 
   const items: GalleryItem[] = useMemo(() => {
     const result: GalleryItem[] = allLogos.map((logo) => ({
@@ -270,9 +305,23 @@ export function LogoGallery({
     return cols
   }, [items, columnCount])
 
+  const handleToggleBookmark = useCallback(
+    (logo: Logo) => {
+      toggleBookmark({
+        id: logo.id,
+        name: logo.name,
+        slug: logo.slug,
+        designer: logo.designer,
+        category: logo.category,
+        logoUrl: logo.logo_url,
+      })
+    },
+    [toggleBookmark]
+  )
+
   if (isLoading || !bookmarksLoaded) {
     return (
-      <div className="mt-10 w-full">
+      <div className="mt-6 w-full">
         <div className="flex gap-4">
           {Array.from({ length: columnCount }).map((_, colIdx) => (
             <div key={colIdx} className="flex flex-1 flex-col">
@@ -288,52 +337,41 @@ export function LogoGallery({
     )
   }
 
-  if (isError || allLogos.length === 0) {
-    return (
-      <div className="mt-10 flex min-h-[400px] w-full items-center justify-center">
-        <Empty>
-          <EmptyHeader>
-            <EmptyMedia variant="icon">
-              <HugeiconsIcon icon={HelpCircleIcon} className="size-4" />
-            </EmptyMedia>
-            <EmptyTitle>
-              {isError ? "Failed to load logos." : "No logos found."}
-            </EmptyTitle>
-          </EmptyHeader>
-        </Empty>
-      </div>
-    )
-  }
-
   return (
-    <div className="mt-10 w-full">
-      <div className="flex gap-4">
-        {columns.map((col, colIdx) => (
-          <div key={colIdx} className="flex flex-1 flex-col">
-            {col.map((item) =>
-              item.type === "skeleton" ? (
-                <LogoCardSkeleton key={item.key} />
-              ) : (
-                <LogoCard
-                  key={item.data.id}
-                  logo={item.data}
-                  isBookmarked={isBookmarked(item.data.id)}
-                  onToggleBookmark={() =>
-                    toggleBookmark({
-                      id: item.data.id,
-                      name: item.data.name,
-                      slug: item.data.slug,
-                      designer: item.data.designer,
-                      category: item.data.category,
-                      logoUrl: item.data.logo_url,
-                    })
-                  }
-                />
-              )
-            )}
-          </div>
-        ))}
-      </div>
+    <div className={cn("mt-6 w-full transition-opacity duration-300", isFetching && !isFetchingNextPage ? "opacity-50" : "opacity-100")}>
+      {allLogos.length === 0 ? (
+        <div className="flex min-h-[400px] w-full items-center justify-center">
+          <Empty>
+            <EmptyHeader>
+              <EmptyMedia variant="icon">
+                <HugeiconsIcon icon={HelpCircleIcon} className="size-4" />
+              </EmptyMedia>
+              <EmptyTitle>
+                {isError ? "Failed to load logos." : "No logos found."}
+              </EmptyTitle>
+            </EmptyHeader>
+          </Empty>
+        </div>
+      ) : (
+        <div className="flex gap-4">
+          {columns.map((col, colIdx) => (
+            <div key={colIdx} className="flex flex-1 flex-col">
+              {col.map((item) =>
+                item.type === "skeleton" ? (
+                  <LogoCardSkeleton key={item.key} />
+                ) : (
+                  <LogoCard
+                    key={item.data.id}
+                    logo={item.data}
+                    isBookmarked={isBookmarked(item.data.id)}
+                    onToggleBookmark={handleToggleBookmark}
+                  />
+                )
+              )}
+            </div>
+          ))}
+        </div>
+      )}
       <div ref={sentinelRef} className="h-1" />
     </div>
   )

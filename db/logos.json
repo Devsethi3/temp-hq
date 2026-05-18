@@ -33,7 +33,7 @@
     "theme": "orange"
   },
   {
-    "id": 56,
+    "id": 36,
     "name": "Herman Miller",
     "slug": "herman-miller",
     "designer": "order",
@@ -425,7 +425,7 @@
     "theme": "green"
   },
   {
-    "id": 36,
+    "id": 56,
     "name": "Cotem",
     "slug": "cotem",
     "designer": "Vask",
@@ -676,5 +676,65 @@
     "category": "design",
     "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/merap.webp",
     "theme": "blue"
+  },
+  {
+    "id": 59,
+    "name": "Sigma AI",
+    "slug": "sigma-ai",
+    "designer": "Ahmed",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
+    "website_url": "https://x.com/Ahmedcreatives/status/2051691451625660804",
+    "category": "design",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/sigma-ai.webp",
+    "theme": "gray",
+    "mockups": [
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/sigma-ai/1.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/sigma-ai/2.webp",
+      "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/mockups/sigma-ai/3.webp"
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Conekta",
+    "slug": "conekta",
+    "designer": "Ab Studio",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
+    "website_url": "https://x.com/Abstudiobrand/status/2056042055852544393",
+    "category": "design",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/conekta.webp",
+    "theme": "black"
+  },
+  {
+    "id": 61,
+    "name": "Creat3",
+    "slug": "creat3",
+    "designer": "Ab Studio",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
+    "website_url": "https://x.com/Abstudiobrand/status/2056042055852544393",
+    "category": "design",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/creat3.webp",
+    "theme": "yellow"
+  },
+  {
+    "id": 62,
+    "name": "Xorbit",
+    "slug": "xorbit",
+    "designer": "Ab Studio",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
+    "website_url": "https://x.com/Abstudiobrand/status/2056042055852544393",
+    "category": "design",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/xorbit.webp",
+    "theme": "orange"
+  },
+  {
+    "id": 63,
+    "name": "Seltra",
+    "slug": "seltra",
+    "designer": "Ab Studio",
+    "description": "A curated logo reference from the inspiration library. Symbol & Text. Blue",
+    "website_url": "https://x.com/Abstudiobrand/status/2056042055852544393",
+    "category": "design",
+    "logo_url": "https://pub-9e87358252234923985c8cd9daf30e20.r2.dev/logos/seltra.webp",
+    "theme": "orange"
   }
 ]

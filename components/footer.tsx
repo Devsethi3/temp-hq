@@ -4,6 +4,8 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { GithubIcon } from "@hugeicons/core-free-icons"
 import { Logo } from "./logo"
 import Link from "next/link"
+import { FullWidthDivider } from "./ui/full-width-divider"
+import { BorderCross } from "./ui/border-cross"
 
 const navLinks = [
   { href: "#gallery", label: "Gallery" },
@@ -27,7 +29,9 @@ const socialLinks = [
 
 export const Footer = memo(() => {
   return (
-    <footer className="mx-auto max-w-7xl *:px-4">
+    <footer className="relative mx-auto max-w-7xl *:px-4">
+      <FullWidthDivider />
+
       <div className="flex flex-col gap-6 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

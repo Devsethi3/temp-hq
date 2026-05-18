@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/empty"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { HelpCircleIcon } from "@hugeicons/core-free-icons"
-import { Share2Icon, CheckIcon } from "lucide-react"
+import { CopyIcon, CheckIcon } from "lucide-react"
 
 interface LogoGalleryProps {
   category?: string
@@ -49,9 +49,9 @@ const ShareButton = memo(({ logo }: { logo: Logo }) => {
       aria-label="Share logo"
     >
       {copied ? (
-        <CheckIcon className="h-4 w-4 text-green-500" />
+        <CheckIcon className="size-4" />
       ) : (
-        <Share2Icon className="h-4 w-4" />
+        <CopyIcon className="size-4" />
       )}
     </button>
   )

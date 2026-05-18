@@ -14,6 +14,7 @@ import { TextureButton } from "./ui/texture-button"
 import { FullWidthDivider } from "./ui/full-width-divider"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { useMediaQuery } from "@/hooks/use-media-query"
+import { BorderCross } from "./ui/border-cross"
 
 interface Logo {
   id: number
@@ -107,6 +108,8 @@ const LogoSection = memo(({ onFilterChange }: LogoSectionProps) => {
   return (
     <div className="w-full">
       <FullWidthDivider />
+      <BorderCross className="-bottom-7.5 left-[12.5%] -translate-x-1/2 translate-y-1/2" />
+      <BorderCross className="-bottom-7.5 right-[12.5%] translate-x-1/2 translate-y-1/2" />
       <div className="flex flex-col items-center gap-2 pt-6 lg:flex-row">
         <InputGroup className="h-10 w-full">
           <InputGroupAddon>

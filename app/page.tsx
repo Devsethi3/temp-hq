@@ -29,7 +29,6 @@ export default function HomePage() {
           sortBy={filters.sort}
         />
       </main>
-      <hr className="w-full" />
       <Footer />
     </div>
   )
